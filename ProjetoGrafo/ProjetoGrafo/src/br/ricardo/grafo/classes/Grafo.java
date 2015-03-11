@@ -1,5 +1,14 @@
 package br.ricardo.grafo.classes;
 
+/**
+ * 
+ * @author Ricardo Oliete Ogata
+ * @category Business layer
+ * @version 1.0
+ * @since 11/03/2015
+ *
+ */
+
 public class Grafo {
 	private final int vertice;
 	private int aresta;
@@ -18,6 +27,10 @@ public class Grafo {
 		for (int v = 0; v < vertice; v++)
 			adjacente[v] = new ListaLigada<Integer>();
 
+	}
+
+	public ListaLigada<Integer>[] getAdjacente() {
+		return adjacente;
 	}
 
 	public int getAresta() {
