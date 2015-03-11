@@ -1,12 +1,9 @@
 package br.ricardo.grafo.classes;
 
-import graphsPrinceton.grafos.Stack.ListIterator;
-import graphsPrinceton.grafos.Stack.Node;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Pilha<Item> {
+public class Pilha<Item> implements Iterable<Item> {
 	private int tamanho;
 	private No<Item> topo;
 
@@ -47,27 +44,33 @@ public class Pilha<Item> {
 			throw new NoSuchElementException(PILHA_VAZIA);
 		return topo.getItem();
 	}
-	
+
 	public Iterator<Item> iterator() {
-        return new ListIterator<Item>(topo);
-    }
+		return new ListIterator<Item>(topo);
+	}
 
-   
-    private class ListIterator<Item> implements Iterator<Item> {
-        private No<Item> atual;
+	private class ListIterator<Item> implements Iterator<Item> {
+		private No<Item> atual;
 
-        public ListIterator(No<Item> atual) {
-            atual = (No<Item>) topo;
-        }
-        public boolean hasNext()  { return atual != null;                     }
-        public void remove()      { throw new UnsupportedOperationException();  }
+		public ListIterator(No<Item> atual) {
+			atual = (No<Item>) topo;
+		}
 
-        public Item next() {
-            if (!hasNext()) throw new NoSuchElementException();
-            Item item = atual.getItem();
-            atual = atual.getProximo();
-            return item;
-        }
-    }
+		public boolean hasNext() {
+			return atual != null;
+		}
+
+		public void remove() {
+			throw new UnsupportedOperationException();
+		}
+
+		public Item next() {
+			if (!hasNext())
+				throw new NoSuchElementException();
+			Item item = atual.getItem();
+			atual = atual.getProximo();
+			return item;
+		}
+	}
 
 }
