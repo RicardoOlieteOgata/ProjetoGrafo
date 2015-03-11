@@ -8,13 +8,14 @@ public class Fila<Item> implements Iterable<Item> {
 	private No<Item> inicio;
 	private No<Item> fim;
 
+	private final static String FILA_VAZIA = "Fila Vazia";
+
 	public Fila() {
 		inicio = null;
 		fim = null;
 		tamanho = 0;
 	}
 
-	
 	public boolean isVazia() {
 		return inicio == null;
 	}
@@ -25,58 +26,33 @@ public class Fila<Item> implements Iterable<Item> {
 
 	public Item getInicio() {
 		if (isVazia())
-			throw new NoSuchElementException(PILHA_VAZIA);
-		return topo.getItem();
-	}
-	
-	
-	public Item getInicio() {
-		if (isVazia())
-			throw new NoSuchElementException("Fila underflow");
-		return inicio.item;
+			throw new NoSuchElementException(FILA_VAZIA);
+		return inicio.getItem();
 	}
 
-	/**
-	 * Adds the item to this queue.
-	 * 
-	 * @param item
-	 *            the item to add
-	 */
-	public void enqueue(Item item) {
-		No<Item> oldlast = fim;
+	public void enfileirar(Item item) {
+		No<Item> auxiliar = fim;
 		fim = new No<Item>();
-		fim.item = item;
-		fim.next = null;
+		fim.setItem(item);
+		fim.setProximo(null);
 		if (isVazia())
 			inicio = fim;
 		else
-			oldlast.next = fim;
+			auxiliar.setProximo(fim);
 		tamanho++;
 	}
 
-	/**
-	 * Removes and returns the item on this queue that was least recently added.
-	 * 
-	 * @return the item on this queue that was least recently added
-	 * @throws java.util.NoSuchElementException
-	 *             if this queue is empty
-	 */
-	public Item dequeue() {
+	public Item desenfileirar() {
 		if (isVazia())
-			throw new NoSuchElementException("Fila underflow");
-		Item item = inicio.item;
-		inicio = inicio.next;
+			throw new NoSuchElementException(FILA_VAZIA);
+		Item item = inicio.getItem();
+		inicio = inicio.getProximo();
 		tamanho--;
 		if (isVazia())
-			fim = null; // to avoid loitering
+			fim = null;
 		return item;
 	}
 
-	/**
-	 * Returns a string representation of this queue.
-	 * 
-	 * @return the sequence of items in FIFO order, separated by spaces
-	 */
 	public String toString() {
 		StringBuilder s = new StringBuilder();
 		for (Item item : this)
@@ -84,27 +60,19 @@ public class Fila<Item> implements Iterable<Item> {
 		return s.toString();
 	}
 
-	/**
-	 * Returns an iterator that iterates over the items in this queue in FIFO
-	 * order.
-	 * 
-	 * @return an iterator that iterates over the items in this queue in FIFO
-	 *         order
-	 */
 	public Iterator<Item> iterator() {
 		return new ListIterator<Item>(inicio);
 	}
 
-	// an iterator, doesn't implement remove() since it's optional
 	private class ListIterator<Item> implements Iterator<Item> {
-		private No<Item> current;
+		private No<Item> atual;
 
 		public ListIterator(No<Item> inicio) {
-			current = inicio;
+			atual = inicio;
 		}
 
 		public boolean hasNext() {
-			return current != null;
+			return atual != null;
 		}
 
 		public void remove() {
@@ -114,25 +82,10 @@ public class Fila<Item> implements Iterable<Item> {
 		public Item next() {
 			if (!hasNext())
 				throw new NoSuchElementException();
-			Item item = current.item;
-			current = current.next;
+			Item item = atual.getItem();
+			atual = atual.getProximo();
 			return item;
 		}
-	}
-
-	/**
-	 * Unit tests the <tt>Fila</tt> data type.
-	 */
-	public static void main(String[] args) {
-		Fila<String> q = new Fila<String>();
-		while (!StdIn.isVazia()) {
-			String item = StdIn.readString();
-			if (!item.equals("-"))
-				q.enqueue(item);
-			else if (!q.isVazia())
-				StdOut.print(q.dequeue() + " ");
-		}
-		StdOut.println("(" + q.size() + " left on queue)");
 	}
 
 }
