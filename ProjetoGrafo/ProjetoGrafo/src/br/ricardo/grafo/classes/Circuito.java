@@ -1,5 +1,14 @@
 package br.ricardo.grafo.classes;
 
+/**
+ * 
+ * @author Ricardo Oliete Ogata
+ * @category Business layer
+ * @version 1.0
+ * @since 11/03/2015
+ *
+ */
+
 public class Circuito {
 	private boolean[] conexo;
 	private int[] arestaPara;

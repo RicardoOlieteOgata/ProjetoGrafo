@@ -1,5 +1,14 @@
 package br.ricardo.grafo.classes;
 
+/**
+ * 
+ * @author Ricardo Oliete Ogata
+ * @category Business layer
+ * @version 1.0
+ * @since 11/03/2015
+ *
+ */
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

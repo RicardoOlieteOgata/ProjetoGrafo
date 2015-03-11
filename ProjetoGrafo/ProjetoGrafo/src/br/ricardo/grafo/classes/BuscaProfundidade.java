@@ -1,5 +1,14 @@
 package br.ricardo.grafo.classes;
 
+/**
+ * 
+ * @author Ricardo Oliete Ogata
+ * @category Business layer
+ * @version 1.0
+ * @since 11/03/2015
+ *
+ */
+
 public class BuscaProfundidade {
 	private boolean[] conexo; // conexo[v] = tem algum caminho de s para v?
 	private int count; // quantidade de vertices conectado ao s
@@ -21,7 +30,7 @@ public class BuscaProfundidade {
 		}
 	}
 
-	public boolean isCircuito() {
+	public boolean isConexo() {
 		if (count != grafo.getVertice())
 			return false;
 		return true;
