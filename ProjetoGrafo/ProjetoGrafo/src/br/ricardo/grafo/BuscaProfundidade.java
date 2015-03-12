@@ -7,7 +7,7 @@ import br.ricardo.estruturas.No;
  * 
  * @author Ricardo Oliete Ogata
  * @category Business layer
- * @version 1.1
+ * @version 1.2
  * @since 11/03/2015
  *
  */
@@ -32,15 +32,11 @@ public class BuscaProfundidade {
 	private void buscaProfundidade(int v) {
 		quantidadeVerticesConexos++;
 		verticesConexos[v] = true;
-		if (!grafo.getVerticesAdjacentes()[v].isVazio()) {
-			No<Integer> auxiliar = grafo.getVerticesAdjacentes()[v].getRaiz();
-			while (auxiliar != null) {
-				int w = auxiliar.getItem();
-				if (!verticesConexos[w])
-					buscaProfundidade(w);
-				auxiliar = auxiliar.getProximo();
-			}
-		}
+
+		for (int w : grafo.getVerticesAdjacentes(v))
+			if (!verticesConexos[w])
+				buscaProfundidade(w);
+
 	}
 
 	public boolean[] getVerticesConexos() {
@@ -50,8 +46,8 @@ public class BuscaProfundidade {
 	public int getQuantidadeVerticesConexos() {
 		return quantidadeVerticesConexos;
 	}
-	
-	public boolean isConexo(){
+
+	public boolean isConexo() {
 		if (quantidadeVerticesConexos == grafo.getQuantidadeVertice())
 			return true;
 		return false;

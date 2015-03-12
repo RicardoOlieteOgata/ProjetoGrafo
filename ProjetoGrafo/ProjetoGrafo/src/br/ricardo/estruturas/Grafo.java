@@ -1,6 +1,5 @@
 package br.ricardo.estruturas;
 
-
 /**
  * 
  * @author Ricardo Oliete Ogata
@@ -34,6 +33,11 @@ public class Grafo {
 		return verticesAdjacentes;
 	}
 
+	public Iterable<Integer> getVerticesAdjacentes(int v) {
+		isVerticeValido(v);
+		return verticesAdjacentes[v];
+	}
+
 	public int getQuantidadeAresta() {
 		return quantidadeAresta;
 	}
@@ -61,7 +65,5 @@ public class Grafo {
 		isVerticeValido(v);
 		return verticesAdjacentes[v].getTamanho();
 	}
-
-	
 
 }

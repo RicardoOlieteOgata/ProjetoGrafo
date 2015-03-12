@@ -1,4 +1,4 @@
-package br.ricardo.grafo.teste;
+package br.ricardo.teste.grafo;
 
 import br.ricardo.grafo.GrafoCliente;
 

@@ -39,17 +39,12 @@ public class BuscaLargura {
 		while (!fila.isVazia()) {
 			int v = fila.desenfileirar();
 
-			if (!grafo.getVerticesAdjacentes()[v].isVazio()) {
-				No<Integer> auxiliar = grafo.getVerticesAdjacentes()[v].getRaiz();
-				while (auxiliar != null) {
-					int w = auxiliar.getItem();
-					if (!verticesConexos[w]) {
-						arestaPara[w] = v;
-						distanciaPara[w] = distanciaPara[v] + 1;
-						verticesConexos[w] = true;
-						fila.enfileirar(w);
-					}
-					auxiliar = auxiliar.getProximo();
+			for (int w : grafo.getVerticesAdjacentes(v)) {
+				if (!verticesConexos[w]) {
+					arestaPara[w] = v;
+					distanciaPara[w] = distanciaPara[v] + 1;
+					verticesConexos[w] = true;
+					fila.enfileirar(w);
 				}
 			}
 		}

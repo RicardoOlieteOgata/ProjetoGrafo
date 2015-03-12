@@ -2,6 +2,15 @@ package br.ricardo.grafo;
 
 import br.ricardo.estruturas.Grafo;
 
+/**
+ * 
+ * @author Ricardo Oliete Ogata
+ * @category Business layer
+ * @version 1.0
+ * @since 12/03/2015
+ *
+ */
+
 public class GrafoCliente extends Grafo {
 
 	public GrafoCliente(int quantidadeVertice) {

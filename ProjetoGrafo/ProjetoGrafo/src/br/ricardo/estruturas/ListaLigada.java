@@ -1,5 +1,9 @@
 package br.ricardo.estruturas;
 
+import java.util.Iterator;
+
+import br.ricardo.iterator.ListaLigadaIterator;
+
 
 /**
  * 
@@ -10,7 +14,7 @@ package br.ricardo.estruturas;
  *
  */
 
-public class ListaLigada<Item> {
+public class ListaLigada<Item> implements Iterable<Item>{
 	private int tamanho;
 	private No raiz;
 
@@ -38,5 +42,12 @@ public class ListaLigada<Item> {
 		raiz.setProximo(auxiliar);
 		tamanho++;
 	}
+
+	@Override
+	public Iterator<Item> iterator()  {
+        return new ListaLigadaIterator<Item>(raiz);  
+    }
+
+    
 
 }
