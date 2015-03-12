@@ -5,6 +5,15 @@ import java.util.NoSuchElementException;
 
 import br.ricardo.estruturas.No;
 
+/**
+ * 
+ * @author Ricardo Oliete Ogata
+ * @category Business layer
+ * @version 1.0
+ * @since 12/03/2015
+ *
+ */
+
 public class ListaLigadaIterator<Item> implements Iterator<Item> {
 	private No<Item> atual;
 
