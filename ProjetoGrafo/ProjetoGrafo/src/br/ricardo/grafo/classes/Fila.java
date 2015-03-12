@@ -9,10 +9,9 @@ package br.ricardo.grafo.classes;
  *
  */
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Fila<Item> implements Iterable<Item> {
+public class Fila<Item> {
 	private int tamanho;
 	private No<Item> inicio;
 	private No<Item> fim;
@@ -60,41 +59,6 @@ public class Fila<Item> implements Iterable<Item> {
 		if (isVazia())
 			fim = null;
 		return item;
-	}
-
-	public String toString() {
-		StringBuilder s = new StringBuilder();
-		for (Item item : this)
-			s.append(item + " ");
-		return s.toString();
-	}
-
-	public Iterator<Item> iterator() {
-		return new ListIterator<Item>(inicio);
-	}
-
-	private class ListIterator<Item> implements Iterator<Item> {
-		private No<Item> atual;
-
-		public ListIterator(No<Item> inicio) {
-			atual = inicio;
-		}
-
-		public boolean hasNext() {
-			return atual != null;
-		}
-
-		public void remove() {
-			throw new UnsupportedOperationException();
-		}
-
-		public Item next() {
-			if (!hasNext())
-				throw new NoSuchElementException();
-			Item item = atual.getItem();
-			atual = atual.getProximo();
-			return item;
-		}
 	}
 
 }
