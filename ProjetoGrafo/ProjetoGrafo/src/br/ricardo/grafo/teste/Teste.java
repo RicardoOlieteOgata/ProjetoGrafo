@@ -1,41 +1,56 @@
 package br.ricardo.grafo.teste;
 
-import br.ricardo.grafo.classes.BuscaLargura;
-import br.ricardo.grafo.classes.BuscaProfundidade;
-import br.ricardo.grafo.classes.Circuito;
-import br.ricardo.grafo.classes.Grafo;
+import br.ricardo.grafo.GrafoCliente;
+
+/**
+ * 
+ * @author Ricardo Oliete Ogata
+ * @category Business layer
+ * @version 1.0
+ * @since 11/03/2015
+ *
+ */
 
 public class Teste {
+	private final static String CONEXO = "Conexo";
+	private final static String NAO = "Não ";
+	private final static String CIRCUITO = "Circuito";
+	private final static String DISTANCIA = "Distancia de ";
+	private final static String PARA = " para ";
+	private final static String IGUAL = " = ";
+	private final static Integer VERTICE0 = 0;
+	private final static Integer VERTICE1 = 1;
+	private final static Integer VERTICE2 = 2;
+	private final static Integer VERTICE3 = 3;
+	private final static Integer QUANTIDADE_VERTICE = 4;
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Grafo grafo = new Grafo(4);
-		grafo.setAresta(0, 1);
-		grafo.setAresta(0, 2);
-		grafo.setAresta(1, 2);
+		GrafoCliente grafo = new GrafoCliente(QUANTIDADE_VERTICE);
+		grafo.setAresta(VERTICE0, VERTICE1);
+		grafo.setAresta(VERTICE0, VERTICE2);
+		grafo.setAresta(VERTICE1, VERTICE2);
+		grafo.setAresta(VERTICE1, VERTICE3);
 
 		if (grafo.isConexo())
-			System.out.println("Conexo");
+			System.out.println(CONEXO);
 		else
-			System.out.println("Nao Conexo");
+			System.out.println(NAO.concat(CONEXO));
 
 		if (grafo.isCircuito())
-			System.out.println("Circuito");
+			System.out.println(CIRCUITO);
 		else
-			System.out.println("Nao Circuito");
+			System.out.println(NAO.concat(CIRCUITO));
 
-		// Circuito circuito = new Circuito(grafo);
-		//
-		// if (circuito.isCircuito())
-		// System.out.println("Circuito");
-		// else
-		// System.out.println("Nao Circuito");
-		//
-		// BuscaLargura buscaLargura = new BuscaLargura(grafo, 0);
-		// System.out.println(buscaLargura.distanciaPara(2));
+		System.out.println(DISTANCIA
+				.concat(String.valueOf(VERTICE0))
+				.concat(PARA)
+				.concat(String.valueOf(VERTICE3))
+				.concat(IGUAL)
+				.concat(String.valueOf(grafo.distanciaVertices(VERTICE0,
+						VERTICE3))));
 
 	}
-
 }

@@ -1,4 +1,5 @@
-package br.ricardo.grafo.classes;
+package br.ricardo.estruturas;
+
 
 /**
  * 
