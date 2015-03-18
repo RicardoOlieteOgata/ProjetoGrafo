@@ -2,13 +2,12 @@ package br.ricardo.grafo;
 
 import br.ricardo.estruturas.Fila;
 import br.ricardo.estruturas.Grafo;
-import br.ricardo.estruturas.No;
 
 /**
  * 
  * @author Ricardo Oliete Ogata
  * @category Business layer
- * @version 1.1
+ * @version 1.2
  * @since 11/03/2015
  *
  */
@@ -18,17 +17,11 @@ public class BuscaLargura {
 	private boolean[] verticesConexos;
 	private int[] arestaPara;
 	private int[] distanciaPara;
-	Grafo grafo;
 
-	public BuscaLargura(Grafo grafo, int v) {
-		this.grafo = grafo;
+	private void buscaLargura(Grafo grafo, int s) {
 		verticesConexos = new boolean[grafo.getQuantidadeVertice()];
 		distanciaPara = new int[grafo.getQuantidadeVertice()];
 		arestaPara = new int[grafo.getQuantidadeVertice()];
-		buscaLargura(v);
-	}
-
-	private void buscaLargura(int s) {
 		Fila<Integer> fila = new Fila<Integer>();
 		for (int v = 0; v < grafo.getQuantidadeVertice(); v++)
 			distanciaPara[v] = INFINITO;
@@ -38,7 +31,6 @@ public class BuscaLargura {
 
 		while (!fila.isVazia()) {
 			int v = fila.desenfileirar();
-
 			for (int w : grafo.getVerticesAdjacentes(v)) {
 				if (!verticesConexos[w]) {
 					arestaPara[w] = v;
@@ -50,8 +42,17 @@ public class BuscaLargura {
 		}
 	}
 
-	public int distanciaPara(int v) {
+	public int distanciaPara(Grafo grafo, int u, int v) {
+		buscaLargura(grafo, u);
 		return distanciaPara[v];
+	}
+
+	public boolean isConexo(Grafo grafo) {
+		buscaLargura(grafo, 0);
+		for (boolean verticeConexo : verticesConexos)
+			if (!verticeConexo)
+				return false;
+		return true;
 	}
 
 }

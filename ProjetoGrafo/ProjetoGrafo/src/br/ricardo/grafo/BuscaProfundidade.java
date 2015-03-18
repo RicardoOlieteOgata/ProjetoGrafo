@@ -1,7 +1,6 @@
 package br.ricardo.grafo;
 
 import br.ricardo.estruturas.Grafo;
-import br.ricardo.estruturas.No;
 
 /**
  * 
@@ -14,43 +13,36 @@ import br.ricardo.estruturas.No;
 
 public class BuscaProfundidade {
 	private boolean[] verticesConexos;
-	private int quantidadeVerticesConexos;
-	private Grafo grafo;
+	private int[] arestaPara;
+	private boolean circuito;
 
-	public BuscaProfundidade(Grafo grafo) {
-		this.grafo = grafo;
+	private void buscaProfundidade(Grafo grafo) {
 		verticesConexos = new boolean[grafo.getQuantidadeVertice()];
-		buscaProfundidade(0);
+		arestaPara = new int[grafo.getQuantidadeVertice()];
+		for (int v = 0; v < grafo.getQuantidadeVertice(); v++)
+			if (!verticesConexos[v])
+				buscaProfundidade(grafo, -1, v);
 	}
 
-	public BuscaProfundidade(Grafo grafo, int v) {
-		this.grafo = grafo;
-		verticesConexos = new boolean[grafo.getQuantidadeVertice()];
-		buscaProfundidade(v);
-	}
-
-	private void buscaProfundidade(int v) {
-		quantidadeVerticesConexos++;
+	private void buscaProfundidade(Grafo grafo, int u, int v) {
 		verticesConexos[v] = true;
-
-		for (int w : grafo.getVerticesAdjacentes(v))
-			if (!verticesConexos[w])
-				buscaProfundidade(w);
+		for (int w : grafo.getVerticesAdjacentes(v)) {
+			if (circuito)
+				return;
+			if (!verticesConexos[w]) {
+				arestaPara[w] = v;
+				buscaProfundidade(grafo, v, w);
+			} else if (w != u) {
+				circuito = true;
+			}
+		}
 
 	}
 
-	public boolean[] getVerticesConexos() {
-		return verticesConexos;
-	}
-
-	public int getQuantidadeVerticesConexos() {
-		return quantidadeVerticesConexos;
-	}
-
-	public boolean isConexo() {
-		if (quantidadeVerticesConexos == grafo.getQuantidadeVertice())
-			return true;
-		return false;
+	public boolean isCircuito(Grafo grafo) {
+		circuito = false;
+		buscaProfundidade(grafo);
+		return circuito;
 	}
 
 }

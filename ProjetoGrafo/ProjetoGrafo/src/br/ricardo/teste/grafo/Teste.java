@@ -6,7 +6,7 @@ import br.ricardo.grafo.GrafoCliente;
  * 
  * @author Ricardo Oliete Ogata
  * @category Business layer
- * @version 1.0
+ * @version 1.1
  * @since 11/03/2015
  *
  */

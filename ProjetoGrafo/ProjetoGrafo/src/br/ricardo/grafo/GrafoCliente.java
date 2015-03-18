@@ -18,23 +18,18 @@ public class GrafoCliente extends Grafo {
 	}
 
 	public boolean isConexo() {
-		BuscaProfundidade buscaProfundidade = new BuscaProfundidade(this);
-		return buscaProfundidade.isConexo();
-	}
-
-	public boolean isConexo(int v) {
-		BuscaProfundidade buscaProfundidade = new BuscaProfundidade(this, v);
-		return buscaProfundidade.isConexo();
+		BuscaLargura buscaLargura = new BuscaLargura();
+		return buscaLargura.isConexo(this);
 	}
 
 	public boolean isCircuito() {
-		Circuito circuito = new Circuito(this);
-		return circuito.isCircuito();
+		BuscaProfundidade buscaProfundidade = new BuscaProfundidade();
+		return buscaProfundidade.isCircuito(this);
 	}
 
-	public int distanciaVertices(int w, int v) {
-		BuscaLargura buscaLargura = new BuscaLargura(this, w);
-		return buscaLargura.distanciaPara(v);
+	public int distanciaVertices(int u, int v) {
+		BuscaLargura buscaLargura = new BuscaLargura();
+		return buscaLargura.distanciaPara(this, u, v);
 	}
 
 }
