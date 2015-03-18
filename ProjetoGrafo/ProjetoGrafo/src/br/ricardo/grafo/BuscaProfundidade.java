@@ -39,8 +39,7 @@ public class BuscaProfundidade {
 
 	}
 
-	public boolean isCircuito(Grafo grafo) {
-		circuito = false;
+	public boolean isCircuito(Grafo grafo) {		
 		buscaProfundidade(grafo);
 		return circuito;
 	}

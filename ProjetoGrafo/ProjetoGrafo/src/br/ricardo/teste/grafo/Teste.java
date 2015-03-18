@@ -22,7 +22,8 @@ public class Teste {
 	private final static Integer VERTICE1 = 1;
 	private final static Integer VERTICE2 = 2;
 	private final static Integer VERTICE3 = 3;
-	private final static Integer QUANTIDADE_VERTICE = 4;
+	private final static Integer VERTICE4 = 4;
+	private final static Integer QUANTIDADE_VERTICE = 5;
 
 	/**
 	 * @param args
@@ -31,7 +32,7 @@ public class Teste {
 		GrafoCliente grafo = new GrafoCliente(QUANTIDADE_VERTICE);
 		grafo.setAresta(VERTICE0, VERTICE1);
 		grafo.setAresta(VERTICE0, VERTICE2);
-		grafo.setAresta(VERTICE1, VERTICE2);
+//		grafo.setAresta(VERTICE1, VERTICE2);
 		grafo.setAresta(VERTICE1, VERTICE3);
 
 		if (grafo.isConexo())
@@ -47,10 +48,10 @@ public class Teste {
 		System.out.println(DISTANCIA
 				.concat(String.valueOf(VERTICE0))
 				.concat(PARA)
-				.concat(String.valueOf(VERTICE3))
+				.concat(String.valueOf(VERTICE4))
 				.concat(IGUAL)
 				.concat(String.valueOf(grafo.distanciaVertices(VERTICE0,
-						VERTICE3))));
+						VERTICE4))));
 
 	}
 }
