@@ -1,13 +1,13 @@
-package br.ricardo.grafo;
+package br.projeto.grafo;
 
-import br.ricardo.estruturas.Fila;
-import br.ricardo.estruturas.Grafo;
+import br.projeto.estruturas.Fila;
+import br.projeto.estruturas.Grafo;
 
 /**
  * 
  * @author Ricardo Oliete Ogata
  * @category Business layer
- * @version 1.2
+ * @version 1.3
  * @since 11/03/2015
  *
  */
@@ -41,13 +41,16 @@ public class BuscaLargura {
 			}
 		}
 	}
-	
+
 	/**
-     * Retorna a distancia entre  u e v .
-     * @return a distancia entre u e v ou -1 se os vertices sao desconexos
-     * @param u um vertice do grafo
-     * @param v outro vertice do grafo   
-     */
+	 * Retorna a distancia entre u e v .
+	 * 
+	 * @return a distancia entre u e v ou -1 se os vertices sao desconexos
+	 * @param u
+	 *            um vertice do grafo
+	 * @param v
+	 *            outro vertice do grafo
+	 */
 	public int distanciaPara(Grafo grafo, int u, int v) {
 		buscaLargura(grafo, u);
 		return distanciaPara[v];
@@ -59,6 +62,16 @@ public class BuscaLargura {
 			if (!verticeConexo)
 				return false;
 		return true;
+	}
+
+	public boolean isCircuito(Grafo grafo) {
+		if (this.isConexo(grafo)) {
+			for (int j = 0; j < grafo.getQuantidadeVertice(); j++)
+				if (grafo.getGrau(j) != 2)
+					return false;
+			return true;
+		}
+		return false;
 	}
 
 }

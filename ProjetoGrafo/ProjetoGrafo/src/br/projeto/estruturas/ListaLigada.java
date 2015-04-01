@@ -1,8 +1,8 @@
-package br.ricardo.estruturas;
+package br.projeto.estruturas;
 
 import java.util.Iterator;
 
-import br.ricardo.iterator.ListaLigadaIterator;
+import br.projeto.iterator.ListaLigadaIterator;
 
 
 /**

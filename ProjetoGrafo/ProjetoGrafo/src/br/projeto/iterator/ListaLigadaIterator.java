@@ -1,9 +1,9 @@
-package br.ricardo.iterator;
+package br.projeto.iterator;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import br.ricardo.estruturas.No;
+import br.projeto.estruturas.No;
 
 /**
  * 

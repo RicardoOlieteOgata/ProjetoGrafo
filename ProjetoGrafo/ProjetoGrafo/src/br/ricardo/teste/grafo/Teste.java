@@ -1,6 +1,6 @@
 package br.ricardo.teste.grafo;
 
-import br.ricardo.grafo.GrafoCliente;
+import br.projeto.grafo.GrafoCliente;
 
 /**
  * 
@@ -23,17 +23,13 @@ public class Teste {
 	private final static Integer VERTICE2 = 2;
 	private final static Integer VERTICE3 = 3;
 	private final static Integer VERTICE4 = 4;
-	private final static Integer QUANTIDADE_VERTICE = 5;
+	private final static Integer QUANTIDADE_VERTICE = 4;
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		GrafoCliente grafo = new GrafoCliente(QUANTIDADE_VERTICE);
 		grafo.setAresta(VERTICE0, VERTICE1);
-		grafo.setAresta(VERTICE0, VERTICE2);
-//		grafo.setAresta(VERTICE1, VERTICE2);
 		grafo.setAresta(VERTICE1, VERTICE3);
+		grafo.setAresta(VERTICE1, VERTICE2);		
 
 		if (grafo.isConexo())
 			System.out.println(CONEXO);
@@ -48,10 +44,9 @@ public class Teste {
 		System.out.println(DISTANCIA
 				.concat(String.valueOf(VERTICE0))
 				.concat(PARA)
-				.concat(String.valueOf(VERTICE4))
+				.concat(String.valueOf(VERTICE2))
 				.concat(IGUAL)
 				.concat(String.valueOf(grafo.distanciaVertices(VERTICE0,
-						VERTICE4))));
-
+						VERTICE2))));
 	}
 }

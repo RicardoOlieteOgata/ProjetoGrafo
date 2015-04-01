@@ -1,4 +1,4 @@
-package br.ricardo.estruturas;
+package br.projeto.estruturas;
 
 /**
  * 
