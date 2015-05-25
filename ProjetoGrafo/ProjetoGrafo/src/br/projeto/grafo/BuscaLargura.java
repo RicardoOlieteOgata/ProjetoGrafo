@@ -19,24 +19,25 @@ public class BuscaLargura {
 	private int[] distanciaPara;
 
 	private void buscaLargura(Grafo grafo, int s) {
-		verticesConexos = new boolean[grafo.getQuantidadeVertice()];
-		distanciaPara = new int[grafo.getQuantidadeVertice()];
-		arestaPara = new int[grafo.getQuantidadeVertice()];
+		verticesConexos = new boolean[grafo.getQuantidadeVertice()]; //white
+		distanciaPara = new int[grafo.getQuantidadeVertice()];  //infinito
+		arestaPara = new int[grafo.getQuantidadeVertice()]; 
 		Fila<Integer> fila = new Fila<Integer>();
 		for (int v = 0; v < grafo.getQuantidadeVertice(); v++)
 			distanciaPara[v] = NAO_CONEXO;
 		distanciaPara[s] = 0;
-		verticesConexos[s] = true;
+		verticesConexos[s] = true; //gray
 		fila.enfileirar(s);
 
 		while (!fila.isVazia()) {
-			int v = fila.desenfileirar();
+			int v = fila.desenfileirar(); //desenfileirar
 			for (int w : grafo.getVerticesAdjacentes(v)) {
-				if (!verticesConexos[w]) {
+				if (!verticesConexos[w]) { // se for white
+					verticesConexos[w] = true; //gray					 
+					distanciaPara[w] = distanciaPara[v] + 1; 
 					arestaPara[w] = v;
-					distanciaPara[w] = distanciaPara[v] + 1;
-					verticesConexos[w] = true;
-					fila.enfileirar(w);
+					
+					fila.enfileirar(w); //enfileirar
 				}
 			}
 		}
