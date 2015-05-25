@@ -16,6 +16,7 @@ public class Teste2 {
 		grafo.setAresta(VERTICE1, VERTICE3);
 		grafo.setAresta(VERTICE1, VERTICE2);
 		grafo.buscaLargura(VERTICE0);
+		grafo.printPath(VERTICE0, VERTICE3);
 	}
 
 }
